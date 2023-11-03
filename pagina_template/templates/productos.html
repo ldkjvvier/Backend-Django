@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if producto %}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
+                <th scope="col">ReOrder</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prod in producto %}
+        {% if prod.stock < prod.reorder %}<tr class="table-warning">{%endif%}
+        {% if prod.stock >= prod.reorder %}<tr class="table-success">{%endif%}
+        {% if prod.stock == 0 %}<tr class="table-danger">{%endif%}
+                <td>{{ prod.id }}</td>
+                <td>{{ prod.nombre }}</td>
+                <td>{{ prod.precio }}</td>
+                <td>{{ prod.stock }}</td>
+                <td>{{ prod.reorder }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class='alert alert-info' role="alert">
+        <strong>Stock total:</strong> {{ stock_total }}<br>
+        <strong>Precio Mayor: $</strong> {{ mayor_precio }}
+    </div>
+</div>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        <h2>No hay productos en el inventario</h2>
+    </div>
+{% endif %}
+
+{% endblock  %}

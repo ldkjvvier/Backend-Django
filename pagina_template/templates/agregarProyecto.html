@@ -1,0 +1,12 @@
+{% extends "base.html" %}   {% comment %} funcion donde se acompla entre el block y el endblock de la base {% endcomment %}
+
+{% block content %}
+
+<div class="alert alert-info display-1 text-center"> LISTADO DE PROYECTOS </div>
+    <form method="POST">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR PROYECTOS" class="btn btn-info">
+    </form>
+<a href="../proyectos" class="btn btn-info mt-5 mb-3">VOLVER A PROYECTOS</a>
+{% endblock  %}
